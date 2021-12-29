@@ -1,10 +1,17 @@
+import kotlinx.coroutines.async
 import kotlinx.css.*
 import react.*
 import react.dom.*
+import kotlinx.browser.window
+import kotlinx.coroutines.*
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import styled.css
 import styled.styledDiv
 
 val app = fc<Props> {
+    var currentVideo: Video? by useState(null)
+
     h1 {
         +"KotlinConf Explorer"
     }
@@ -15,6 +22,10 @@ val app = fc<Props> {
         child(videoList) {
             attrs {
                 videos = unwatchedVideos
+                selectedVideo = currentVideo
+                onSelectVideo = { video ->
+                    currentVideo = video
+                }
             }
         }
 
@@ -24,6 +35,10 @@ val app = fc<Props> {
         child(videoList) {
             attrs {
                 videos = watchedVideos
+                selectedVideo = currentVideo
+                onSelectVideo = { video ->
+                    currentVideo = video
+                }
             }
         }
     }

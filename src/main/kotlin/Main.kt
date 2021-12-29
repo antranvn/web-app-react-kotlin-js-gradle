@@ -1,5 +1,8 @@
+import react.dom.*
 import kotlinx.browser.document
-import react.dom.render
+import kotlinx.css.*
+import kotlinx.serialization.Serializable
+import styled.*
 
 data class Video(
     val id: Int,
@@ -18,8 +21,8 @@ val watchedVideos = listOf(
     Video(4, "Mouseless development", "Tom Jerry", "https://youtu.be/PsaFVLr8t4E")
 )
 
-fun main() {
 
+fun main() {
     render(document.getElementById("root")) {
         child(app)
     }
